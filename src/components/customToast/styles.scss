@@ -1,0 +1,9 @@
+.toast-container {
+  position: fixed;
+  bottom: 3rem;
+  right: -350px;
+  transition: right 1s;
+  &.shown {
+    right: 2rem;
+  }
+}

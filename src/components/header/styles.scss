@@ -1,0 +1,11 @@
+.navbar-brand {
+  &.logo {
+    color: #2d6bdf;
+    &:focus {
+      color: #2d6bdf;
+    }
+    &:hover {
+      color: #0745b8;
+    }
+  }
+}
