@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getBookRequest } from "../../actions/booksActions";
 import { Loader } from "../../components/loader";
-import { BookDetails } from "../../components/bookDetails/bookDetails";
+import { BookDetails } from "../../components/bookDetails";
 import { ErrorMessage } from "../../components/errorMessage";
+import { VotedUsersPanel } from "../../components/usersPanel";
 
 const BookPage = () => {
   const { id } = useParams();
@@ -39,14 +40,7 @@ const BookPage = () => {
             <div className=" col-md-8">
               <BookDetails book={book} />
             </div>
-            <div className=" col-md-4">
-              <div className="jumbotron aside">
-                <h6>Voted users:</h6>
-                {book.voices.map((i, index) => (
-                  <div key={index}>{i.userName}</div>
-                ))}
-              </div>
-            </div>
+            <VotedUsersPanel voices={book.voices} />
           </div>
         </div>
       )}

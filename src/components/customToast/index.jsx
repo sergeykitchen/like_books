@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Toast } from "react-bootstrap";
-import "./styles.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { dropError } from "../../actions/errorAction";
+import "./styles.scss";
+
+let timer = null;
 
 export const CustomToast = () => {
   const error = useSelector(state => state.error);
@@ -11,7 +13,7 @@ export const CustomToast = () => {
   const [containerClassName, setContainerClassName] = useState(
     "toast-container"
   );
-  const [timer, setTimer] = useState(null);
+
   const [isShowed, setIsShowed] = useState(false);
 
   const clearError = useCallback(() => {
@@ -23,13 +25,18 @@ export const CustomToast = () => {
     }, 1000);
   }, [dispatch, setContainerClassName, error]);
 
+  const closeToast = useCallback(() => {
+    clearError();
+    clearTimeout(timer);
+    timer = null;
+  }, [clearError]);
+
   const closeToastDelay = useCallback(() => {
-    const errorTimer = setTimeout(() => {
+    timer = setTimeout(() => {
       setContainerClassName("toast-container");
-      clearError();
+      closeToast();
     }, 3000);
-    setTimer(errorTimer);
-  }, [setContainerClassName, setTimer, clearError]);
+  }, [setContainerClassName, closeToast]);
 
   const mouseEnterHandler = () => {
     clearTimeout(timer);
@@ -47,12 +54,6 @@ export const CustomToast = () => {
       setIsShowed(true);
     }
   }, [error, setContainerClassName, closeToastDelay]);
-
-  const closeToast = () => {
-    clearError();
-    clearTimeout(timer);
-    setTimer(null);
-  };
 
   return (
     <div

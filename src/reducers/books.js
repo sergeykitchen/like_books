@@ -32,16 +32,19 @@ export default (state = initialState, { type, payload }) => {
       };
     }
     case VOTE_BOOK_SUCCESS:
-      const index = state.books.findIndex(i => {
-        return i._id === payload.bookId;
-      });
-      const books = [...state.books];
-      books[index].loading = false;
-      books[index].voices = payload.voices;
-      return {
-        ...state,
-        books
-      };
+      if (state.books) {
+        const index = state.books.findIndex(i => {
+          return i._id === payload.bookId;
+        });
+        const books = [...state.books];
+        books[index].loading = false;
+        books[index].voices = payload.voices;
+        return {
+          ...state,
+          books
+        };
+      }
+      return state;
     case SET_FILTERS:
       return {
         ...state,

@@ -6,6 +6,10 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const errorHandler = require("errorhandler");
 const config = require("config");
+require("./models/Users");
+require("./models/Books");
+require("./config/passport");
+const routes = require("./routes");
 
 //Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
@@ -30,9 +34,7 @@ app.use(
   })
 );
 
-require("./models/Users");
-require("./models/Books");
-app.use(require("./routes"));
+app.use(routes);
 
 if (!isProduction) {
   app.use(errorHandler());
@@ -51,8 +53,6 @@ mongoose.connect(config.get("mongoUri"), {
   useCreateIndex: true
 });
 mongoose.set("debug", true);
-
-require("./config/passport");
 
 //Error handlers & middlewares
 if (!isProduction) {

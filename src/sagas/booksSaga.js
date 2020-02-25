@@ -33,7 +33,7 @@ function* getBook(action) {
   }
 }
 
-function* voteBook({ payload: { bookId, userId } }) {
+function* voteBook({ payload: { bookId } }) {
   try {
     yield call(Api.voteForBook, bookId);
   } catch (e) {

@@ -4,17 +4,11 @@
     display: flex;
     flex-direction: column;
   }
-  &-placeholder {
-    width: 100%;
-    padding-bottom: 150%;
-    background-color: #cdc8d5;
-    background: url("./book-cover-placeholder.png") center/contain;
-  }
+
   &-title a {
     color: #2a2c22;
   }
   &-text {
-    text-indent: 1.5em;
     text-align: justify;
     font-size: 0.9rem;
   }

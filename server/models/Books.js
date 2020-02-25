@@ -8,7 +8,7 @@ const BooksSchema = new Schema({
   author: { type: String, required: true, unique: true },
   about: String,
   tags: [String],
-  voices: [{ type: Types.ObjectId, ref: "User" }]
+  voices: [{ type: Types.ObjectId, ref: "Users" }]
 });
 
 mongoose.model("Books", BooksSchema);

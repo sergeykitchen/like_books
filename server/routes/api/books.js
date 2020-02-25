@@ -18,8 +18,6 @@ router.get("/", auth.optional, async (req, res, next) => {
 
 router.post("/vote", auth.required, async (req, res, next) => {
   try {
-    socketServer.emit("vote");
-
     const bookId = req.body.bookId;
     const voteUser = req.user;
     const user = Users.findByIdAndUpdate(
@@ -45,6 +43,16 @@ router.post("/vote", auth.required, async (req, res, next) => {
     socketServer.emit("voted", {
       voices: { voices: result[1].voices, bookId: bookId }
     });
+
+    socketServer.emit("updateUsersList", {
+      voices: {
+        bookId: bookId,
+        email: result[0].email,
+        name: result[0].name,
+        id: result[0]._id
+      }
+    });
+
     return res.json({
       status: "ok"
     });
@@ -56,21 +64,15 @@ router.post("/vote", auth.required, async (req, res, next) => {
 router.get("/:id", validateIdMiddleware, async (req, res, next) => {
   try {
     const { id } = req.params;
-    const book = await Books.findById(id);
+    const book = await Books.findById(id).populate({
+      path: "voices",
+      select: "name email"
+    });
+
     if (!book) {
       return res.sendStatus(404);
     }
-    const { voices } = book;
-    const users = await Users.find({ _id: { $in: voices } });
-    const votedUsers = users.map(user => {
-      return {
-        userName: user.name,
-        userEmail: user.email,
-        userId: user._id
-      };
-    });
-
-    return res.json({ book: { ...book._doc, voices: votedUsers } });
+    return res.json({ book });
   } catch (error) {
     return res.status(500).json({ message: "Something wrong" });
   }

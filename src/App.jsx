@@ -5,7 +5,7 @@ import { logOut } from "./actions/usersActions";
 import MainLayout from "./layouts/mainLayout";
 import { Header } from "./components/header";
 import { useDispatch, useSelector } from "react-redux";
-import { useRoutes } from "./containers/Routers";
+import { Routes } from "./routes";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function App() {
     <MainLayout>
       <Router history={history}>
         <Header user={user} logout={logout} />
-        {useRoutes(user)}
+        <Routes user={user} />
       </Router>
     </MainLayout>
   );

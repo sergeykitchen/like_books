@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 3rem;
   right: -350px;
-  transition: right 1s;
+  transition: right 0.5s;
   &.shown {
     right: 2rem;
   }

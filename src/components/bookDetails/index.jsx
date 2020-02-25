@@ -1,5 +1,7 @@
 import React from "react";
+import { BookCover } from "../bookCover";
 import "./styles.scss";
+
 export const BookDetails = ({ book }) => {
   return (
     <div className="jumbotron book-info">
@@ -7,10 +9,10 @@ export const BookDetails = ({ book }) => {
       <p>Author: {book.author}.</p>
       <div className="row">
         <div className="col-sm-4">
-          <img className="img-thumbnail" alt="" src={book.picture} />
+          <BookCover image={book.picture} />
         </div>
         <div className=" col-sm-8 d-flex">
-          <p>{book.about}</p>
+          <p className="text-indent">{book.about}</p>
         </div>
       </div>
       <p>Price: ${book.price}</p>

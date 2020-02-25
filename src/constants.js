@@ -23,7 +23,6 @@ export const VOTE_BOOK_SUCCESS = "VOTE_BOOK_SUCCESS";
 export const VOTE_BOOK_ERROR = "VOTE_BOOK_ERROR";
 
 export const SET_FILTERS = "SET_FILTERS";
-export const SET_SOCKET = "SET_SOCKET";
 
 export const SET_ERROR = "SET_ERROR";
 export const DROP_ERROR = "DROP_ERROR";

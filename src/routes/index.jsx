@@ -1,12 +1,12 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import MainPage from "../../pages/mainPage";
-import SignInPage from "../../pages/signInPage";
-import BookPage from "../../pages/bookPage";
-import SignUpPage from "../../pages/signUpPage";
-import HomePage from "../../pages/homePage";
+import MainPage from "../pages/mainPage";
+import SignInPage from "../pages/signInPage";
+import BookPage from "../pages/bookPage";
+import SignUpPage from "../pages/signUpPage";
+import HomePage from "../pages/homePage";
 
-export const useRoutes = user => {
+export const Routes = ({ user }) => {
   if (user) {
     return (
       <Switch>

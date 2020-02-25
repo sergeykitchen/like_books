@@ -3,6 +3,7 @@ import "./styles.scss";
 import { voteForBookRequest } from "../../actions/booksActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { BookCover } from "../bookCover";
 
 export const BookCard = ({
   item: {
@@ -33,31 +34,16 @@ export const BookCard = ({
     return user && voices.includes(user._id);
   };
 
-  const errorHandler = e => {
-    const parent = e.target.parentNode;
-    const placeholder = document.createElement("div");
-    placeholder.className = "card-placeholder";
-    parent.replaceChild(placeholder, e.target);
-  };
-
-  const cutText = text => {
-    return (
-      text
-        .split(" ")
-        .slice(0, 25)
-        .join(" ") + "..."
-    );
+  const cutText = (text, length = 25) => {
+    const words = text.split(" ");
+    return words.length <= length
+      ? text
+      : words.slice(0, length).join(" ") + "...";
   };
 
   return (
     <div className="card">
-      <img
-        onError={errorHandler}
-        className="card-img-top"
-        src={bookImage}
-        alt="Card cap"
-      />
-
+      <BookCover image={bookImage} />
       <div className="card-body">
         <h5 className="card-title capitalize mb-1">
           <Link to={`/book_page/${_id}`}> {title}.</Link>
@@ -70,7 +56,7 @@ export const BookCard = ({
             </span>
           ))}
         </div>
-        <p className="card-text mt-4">
+        <p className="card-text text-indent mt-4">
           {cutText(about)} <Link to={`/book_page/${_id}`}>Show more</Link>
         </p>
         <div className="clearfix mt-auto">

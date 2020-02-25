@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import socketApi from "../../api/socketServise";
+import socketApi from "../../api/socketService";
 import { loginUserRequest } from "../../actions/usersActions";
 import { voteForBookSuccess } from "../../actions/booksActions";
 import { CustomToast } from "../../components/customToast";
-import "./styles.scss";
 import { Loader } from "../../components/loader";
+import "./styles.scss";
 
 const MainLayout = ({ children }) => {
   const dispatch = useDispatch();
