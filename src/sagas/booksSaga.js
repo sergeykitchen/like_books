@@ -12,7 +12,7 @@ import {
   GET_BOOKS_REQUEST,
   VOTE_BOOK_REQUEST,
   GET_BOOK_REQUEST
-} from "../constants.js";
+} from "../constants";
 
 function* getBooks() {
   try {

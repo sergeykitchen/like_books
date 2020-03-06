@@ -7,9 +7,13 @@ import { Header } from "./components/header";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes } from "./routes";
 
-function App() {
+import { IUser, IDefaultState } from "./interfaces";
+
+const App: React.FC<{}> = () => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.users.user);
+  const user = useSelector<IDefaultState, IUser | null>(
+    state => state.users.user
+  );
 
   const logout = () => {
     dispatch(logOut());
@@ -23,6 +27,6 @@ function App() {
       </Router>
     </MainLayout>
   );
-}
+};
 
 export default App;

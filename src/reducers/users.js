@@ -7,7 +7,7 @@ import {
   LOGIN_USER_ERROR,
   LOGOUT_USER,
   UPDATE_USER
-} from "../constants.js";
+} from "../constants";
 
 const initialState = {
   user: null,

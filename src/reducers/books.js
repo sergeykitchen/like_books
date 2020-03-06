@@ -8,7 +8,7 @@ import {
   SET_FILTERS,
   VOTE_BOOK_REQUEST,
   VOTE_BOOK_SUCCESS
-} from "../constants.js";
+} from "../constants";
 
 const initialState = {
   books: null,

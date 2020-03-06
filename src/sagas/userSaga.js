@@ -9,7 +9,7 @@ import {
 
 import { setError } from "../actions/errorAction";
 
-import { CREATE_USER_REQUEST, LOGIN_USER_REQUEST } from "../constants.js";
+import { CREATE_USER_REQUEST, LOGIN_USER_REQUEST } from "../constants";
 
 function* createUser(action) {
   try {

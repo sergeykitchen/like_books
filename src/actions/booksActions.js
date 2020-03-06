@@ -9,7 +9,7 @@ import {
   VOTE_BOOK_REQUEST,
   VOTE_BOOK_SUCCESS,
   VOTE_BOOK_ERROR
-} from "../constants.js";
+} from "../constants";
 
 export const voteForBookRequest = id => ({
   type: VOTE_BOOK_REQUEST,
