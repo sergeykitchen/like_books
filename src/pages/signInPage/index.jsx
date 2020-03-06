@@ -23,12 +23,7 @@ function SignInPage() {
     <div className="row m-0">
       <div className="col-11 col-md-8 m-auto mw-1200">
         <h2>Sign In</h2>
-        <AuthForm
-          submit={submit}
-          label="Sign In"
-          isSignIn
-          isLoading={loading}
-        />
+        <AuthForm submit={submit} label="Sign In" isLoading={loading} />
         Go to <Link to="/signup">sign up.</Link>
       </div>
     </div>

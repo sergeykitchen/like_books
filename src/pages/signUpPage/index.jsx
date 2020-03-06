@@ -22,7 +22,12 @@ const SignUpPage = () => {
     <div className="row m-0">
       <div className="col-11 col-md-8 m-auto mw-1200">
         <h2>Sign Up</h2>
-        <AuthForm label="Sign Up" submit={submit} isLoading={loading} />
+        <AuthForm
+          isSignUp
+          label="Sign Up"
+          submit={submit}
+          isLoading={loading}
+        />
         Go to <Link to="/signin">sign in.</Link>
       </div>
     </div>
