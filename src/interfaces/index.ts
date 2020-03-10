@@ -1,47 +1,60 @@
 export interface IDefaultState {
   users: IUsersState;
   books: IBooksState;
-  error: any;
-  _persists: any;
+  error: IError;
 }
 
 export interface IVoice {
-  _id: String;
-  email: String;
-  name: String;
+  _id: string;
+  email: string;
+  name: string;
 }
 
-export interface IUsersState {
-  user: IUser;
-  error: any;
+export interface IUsersState extends Object {
+  user?: IUser | null;
   loading: Boolean;
+}
+
+export interface IError {
+  message: string;
+  statusText: string;
 }
 
 export interface IFilter {
-  value: String;
-  label: String;
+  value: string;
+  label: string;
 }
 
 export interface IBooksState {
-  books: [IBook];
-  error: any;
+  books: IBook[] | null;
   loading: Boolean;
-  filters: [IFilter];
-  book: IBook;
+  filters: IFilter[];
+  book: IBook | null;
 }
 
 export interface IBook {
-  _id: String;
-  tags: [String];
+  _id: string;
+  tags: [string];
   voices: [any];
   price: Number;
-  picture: String;
-  title: String;
-  author: String;
-  about: String;
+  picture: string;
+  title: string;
+  author: string;
+  about: string;
+  loading: boolean;
 }
 
 export interface IUser extends IVoice {
-  token: String;
-  likedBooks: [String];
+  token: string;
+  likedBooks: [string];
+}
+
+export interface IVoteResponse {
+  bookId: string;
+  voices: string[];
+}
+
+export interface IAction<T> {
+  type: string;
+  payload?: T;
 }

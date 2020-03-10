@@ -11,9 +11,12 @@ import { IUser, IDefaultState } from "./interfaces";
 
 const App: React.FC<{}> = () => {
   const dispatch = useDispatch();
-  const user = useSelector<IDefaultState, IUser | null>(
-    state => state.users.user
-  );
+  const user = useSelector<IDefaultState, IUser | null>(state => {
+    if (state.users.user) {
+      return state.users.user;
+    }
+    return null;
+  });
 
   const logout = () => {
     dispatch(logOut());

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/index.scss";
@@ -10,14 +9,12 @@ import * as serviceWorker from "./serviceWorker";
 import configureStore from "./store";
 import saga from "./sagas";
 
-const { store, persistor, runSaga } = configureStore();
+const { store, runSaga } = configureStore();
 runSaga(saga);
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <App />
-    </PersistGate>
+    <App />
   </Provider>,
   document.getElementById("root")
 );

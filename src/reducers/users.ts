@@ -1,3 +1,6 @@
+import { AxiosResponse } from "axios";
+import { IAction, IUsersState } from "../interfaces";
+
 import {
   CREATE_USER_REQUEST,
   CREATE_USER_SUCCESS,
@@ -5,25 +8,28 @@ import {
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
-  LOGOUT_USER,
-  UPDATE_USER
+  LOGOUT_USER
+  // UPDATE_USER
 } from "../constants";
 
 const initialState = {
   user: null,
-  // error: null,
   loading: false
 };
 
-export default (state = initialState, { type, payload }) => {
+export default (
+  state = initialState,
+  action: IAction<AxiosResponse>
+): IUsersState => {
+  const { type, payload } = action;
   switch (type) {
-    case UPDATE_USER:
-      const user = { ...state.user };
-      user.likedBooks.push(payload);
-      return {
-        ...state,
-        user
-      };
+    // case UPDATE_USER:
+    //   const user: IUser | null = Object.assign({}, state).user;
+    //   user && user.likedBooks.push(payload);
+    //   return {
+    //     ...state,
+    //     user
+    //   };
     case LOGOUT_USER:
       return {
         ...state,
@@ -31,39 +37,33 @@ export default (state = initialState, { type, payload }) => {
       };
     case CREATE_USER_REQUEST:
       return {
-        ...state,
-        error: null,
+        user: null,
         loading: true
       };
     case CREATE_USER_SUCCESS:
       return {
         ...state,
         loading: false,
-        user: payload.data.user
+        user: payload ? payload.data.user : null
       };
     case CREATE_USER_ERROR:
       return {
-        loading: false,
-        error: payload,
-        user: null
+        loading: false
       };
     case LOGIN_USER_REQUEST:
       return {
-        ...state,
-        error: null,
+        user: null,
         loading: true
       };
     case LOGIN_USER_SUCCESS:
       return {
         ...state,
         loading: false,
-        user: payload.data.user
+        user: payload ? payload.data.user : null
       };
     case LOGIN_USER_ERROR:
       return {
-        user: null,
-        loading: false,
-        error: payload
+        loading: false
       };
     default:
       return state;

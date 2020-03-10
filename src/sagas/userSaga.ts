@@ -1,4 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects";
+import { AxiosResponse } from "axios";
 import Api from "../api";
 import {
   createUserSuccess,
@@ -11,7 +12,7 @@ import { setError } from "../actions/errorAction";
 
 import { CREATE_USER_REQUEST, LOGIN_USER_REQUEST } from "../constants";
 
-function* createUser(action) {
+function* createUser(action: any) {
   try {
     const user = yield call(Api.createUser, action.payload);
     yield put(createUserSuccess(user));
@@ -21,9 +22,9 @@ function* createUser(action) {
   }
 }
 
-function* loginUser(action) {
+function* loginUser(action: any) {
   try {
-    let user;
+    let user: AxiosResponse;
     if (!action.payload) {
       user = yield call(Api.logInByToken);
     } else {
@@ -31,7 +32,7 @@ function* loginUser(action) {
     }
     yield put(loginUserSuccess(user));
   } catch (e) {
-    yield put(loginUserError(e));
+    yield put(loginUserError());
     if (action.payload) {
       yield put(setError(e));
     }

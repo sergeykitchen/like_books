@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 const baseUrl = "http://localhost:8000";
 
 const instance = axios.create({
@@ -11,7 +11,12 @@ class Api {
     return localStorage["my_app"];
   };
 
-  createUser = async ({ email, password, name }) => {
+  createUser = async (data: {
+    email: string;
+    password: string;
+    name: string;
+  }): Promise<AxiosResponse> => {
+    const { email, password, name } = data;
     try {
       const res = await instance({
         method: "post",
@@ -31,7 +36,7 @@ class Api {
     }
   };
 
-  logInByToken = async () => {
+  logInByToken = async (): Promise<AxiosResponse | undefined> => {
     const token = this._getToken();
     if (!token) return;
     try {
@@ -48,7 +53,11 @@ class Api {
     }
   };
 
-  loginUser = async ({ email, password }) => {
+  loginUser = async (data: {
+    email: string;
+    password: string;
+  }): Promise<AxiosResponse> => {
+    const { email, password } = data;
     try {
       const res = await instance({
         method: "post",
@@ -67,7 +76,7 @@ class Api {
     }
   };
 
-  getBooks = async () => {
+  getBooks = async (): Promise<AxiosResponse> => {
     try {
       const res = await instance({
         method: "get",
@@ -79,7 +88,7 @@ class Api {
     }
   };
 
-  getBook = async id => {
+  getBook = async (id: string): Promise<AxiosResponse> => {
     try {
       const res = await instance({
         method: "get",
@@ -91,7 +100,7 @@ class Api {
     }
   };
 
-  voteForBook = async id => {
+  voteForBook = async (id: string): Promise<AxiosResponse | undefined> => {
     const token = this._getToken();
     if (!token) return;
     try {

@@ -1,3 +1,5 @@
+import { AxiosResponse } from "axios";
+
 import {
   GET_BOOKS_REQUEST,
   GET_BOOKS_SUCCESS,
@@ -10,23 +12,24 @@ import {
   VOTE_BOOK_SUCCESS,
   VOTE_BOOK_ERROR
 } from "../constants";
+import { IAction } from "../interfaces";
 
-export const voteForBookRequest = id => ({
+export const voteForBookRequest = (id: string): IAction<string> => ({
   type: VOTE_BOOK_REQUEST,
   payload: id
 });
-export const voteForBookSuccess = data => {
+export const voteForBookSuccess = (data: any): any => {
   return {
     type: VOTE_BOOK_SUCCESS,
     payload: data
   };
 };
-export const voteForBookError = error => ({
+export const voteForBookError = (error: any): any => ({
   type: VOTE_BOOK_ERROR,
   payload: error
 });
 
-export const setFilters = tags => ({
+export const setFilters = (tags: any): any => ({
   type: SET_FILTERS,
   payload: tags
 });
@@ -35,27 +38,29 @@ export const getBooksRequest = () => ({
   type: GET_BOOKS_REQUEST
 });
 
-export const getBooksSuccess = books => ({
+export const getBooksSuccess = (
+  books: AxiosResponse
+): IAction<AxiosResponse> => ({
   type: GET_BOOKS_SUCCESS,
   payload: books
 });
 
-export const getBooksError = error => ({
+export const getBooksError = (error: any): any => ({
   type: GET_BOOKS_ERROR,
   payload: error
 });
 
-export const getBookRequest = id => ({
+export const getBookRequest = (id: any): any => ({
   type: GET_BOOK_REQUEST,
   payload: id
 });
 
-export const getBookSuccess = data => ({
+export const getBookSuccess = (data: any): any => ({
   type: GET_BOOK_SUCCESS,
   payload: data
 });
 
-export const getBookError = error => ({
+export const getBookError = (error: any): any => ({
   type: GET_BOOK_ERROR,
   payload: error
 });
