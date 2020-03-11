@@ -3,18 +3,19 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import AuthForm from "../../components/authForm";
 import { createUserRequest } from "../../actions/usersActions";
+import { INewUser } from "../../interfaces";
 
 const SignUpPage = () => {
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.users.loading);
-  const user = useSelector(state => state.users.user);
+  const loading = useSelector<any>(state => state.users.loading);
+  const user = useSelector<any>(state => state.users.user);
   useEffect(() => {
     if (!user) {
       localStorage.removeItem("my_app");
     }
   }, [user]);
 
-  const submit = data => {
+  const submit = (data: INewUser) => {
     dispatch(createUserRequest(data));
   };
 

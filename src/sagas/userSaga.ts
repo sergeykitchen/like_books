@@ -11,18 +11,21 @@ import {
 import { setError } from "../actions/errorAction";
 
 import { actionTypes } from "../constants";
+import { IAction, INewUser, IExistUser } from "../interfaces";
 
-function* createUser(action: any) {
+function* createUser(action: IAction<INewUser>) {
   try {
-    const user = yield call(Api.createUser, action.payload);
-    yield put(createUserSuccess(user));
+    if (action.payload) {
+      const user = yield call(Api.createUser, action.payload);
+      yield put(createUserSuccess(user));
+    }
   } catch (e) {
-    yield put(createUserError(e));
+    yield put(createUserError());
     yield put(setError(e));
   }
 }
 
-function* loginUser(action: any) {
+function* loginUser(action: IAction<IExistUser>) {
   try {
     let user: AxiosResponse;
     if (!action.payload) {

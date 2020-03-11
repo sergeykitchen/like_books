@@ -34,10 +34,12 @@ export const getBooksError = (): IAction => ({
   type: actionTypes.GET_BOOKS_ERROR
 });
 
-export const getBookRequest = <T>(id: T): IAction<T> => ({
-  type: actionTypes.GET_BOOK_REQUEST,
-  payload: id
-});
+export function getBookRequest<T>(id: T): IAction<T> {
+  return {
+    type: actionTypes.GET_BOOK_REQUEST,
+    payload: id
+  };
+}
 
 export const getBookSuccess = <T>(data: T): IAction<T> => ({
   type: actionTypes.GET_BOOK_SUCCESS,

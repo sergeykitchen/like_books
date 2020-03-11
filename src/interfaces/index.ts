@@ -58,3 +58,12 @@ export interface IAction<T = void> {
   type: string;
   payload?: T;
 }
+
+export interface INewUser extends IExistUser {
+  name: string;
+}
+
+export interface IExistUser {
+  password: string;
+  email: string;
+}
