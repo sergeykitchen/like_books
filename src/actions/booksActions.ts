@@ -1,5 +1,3 @@
-import { AxiosResponse } from "axios";
-
 import {
   GET_BOOKS_REQUEST,
   GET_BOOKS_SUCCESS,
@@ -14,53 +12,49 @@ import {
 } from "../constants";
 import { IAction } from "../interfaces";
 
-export const voteForBookRequest = (id: string): IAction<string> => ({
+export const voteForBookRequest = <T>(id: T): IAction<T> => ({
   type: VOTE_BOOK_REQUEST,
   payload: id
 });
-export const voteForBookSuccess = (data: any): any => {
+export const voteForBookSuccess = <T>(data: T): IAction<T> => {
   return {
     type: VOTE_BOOK_SUCCESS,
     payload: data
   };
 };
-export const voteForBookError = (error: any): any => ({
+export const voteForBookError = <T>(error: T): IAction<T> => ({
   type: VOTE_BOOK_ERROR,
   payload: error
 });
 
-export const setFilters = (tags: any): any => ({
+export const setFilters = <T>(tags: T): IAction<T> => ({
   type: SET_FILTERS,
   payload: tags
 });
 
-export const getBooksRequest = () => ({
+export const getBooksRequest = (): IAction => ({
   type: GET_BOOKS_REQUEST
 });
 
-export const getBooksSuccess = (
-  books: AxiosResponse
-): IAction<AxiosResponse> => ({
+export const getBooksSuccess = <T>(books: T): IAction<T> => ({
   type: GET_BOOKS_SUCCESS,
   payload: books
 });
 
-export const getBooksError = (error: any): any => ({
-  type: GET_BOOKS_ERROR,
-  payload: error
+export const getBooksError = (): IAction => ({
+  type: GET_BOOKS_ERROR
 });
 
-export const getBookRequest = (id: any): any => ({
+export const getBookRequest = <T>(id: T): IAction<T> => ({
   type: GET_BOOK_REQUEST,
   payload: id
 });
 
-export const getBookSuccess = (data: any): any => ({
+export const getBookSuccess = <T>(data: T): IAction<T> => ({
   type: GET_BOOK_SUCCESS,
   payload: data
 });
 
-export const getBookError = (error: any): any => ({
-  type: GET_BOOK_ERROR,
-  payload: error
+export const getBookError = (): IAction => ({
+  type: GET_BOOK_ERROR
 });

@@ -54,7 +54,7 @@ export interface IVoteResponse {
   voices: string[];
 }
 
-export interface IAction<T> {
+export interface IAction<T = void> {
   type: string;
   payload?: T;
 }
