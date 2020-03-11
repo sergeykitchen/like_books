@@ -9,10 +9,9 @@ export interface IVoice {
   email: string;
   name: string;
 }
-
 export interface IUsersState extends Object {
   user?: IUser | null;
-  loading: Boolean;
+  loading: boolean;
 }
 
 export interface IError {
@@ -27,7 +26,7 @@ export interface IFilter {
 
 export interface IBooksState {
   books: IBook[] | null;
-  loading: Boolean;
+  loading: boolean;
   filters: IFilter[];
   book: IBook | null;
 }
@@ -67,3 +66,24 @@ export interface IExistUser {
   password: string;
   email: string;
 }
+
+// interfaces of components
+
+export interface IAuthFormProps {
+  isLoading: boolean;
+  label: string;
+  submit: (value: INewUser) => void;
+  isSignUp?: boolean;
+}
+export interface IFieldsData {
+  name: string;
+  placeholder: string;
+  type: string;
+  defaultValue: string;
+  isRequired: boolean;
+  label: string;
+}
+
+// export interface {
+
+// }

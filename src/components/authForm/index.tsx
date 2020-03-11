@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
+import { IAuthFormProps, IFieldsData } from "../../interfaces";
 
 import "./styles.scss";
 
-const nameField = {
+const nameField: IFieldsData = {
   name: "name",
   placeholder: "Name",
   type: "text",
@@ -12,7 +13,7 @@ const nameField = {
   label: "Name"
 };
 
-let fieldsData = [
+let fieldsData: IFieldsData[] = [
   {
     name: "email",
     placeholder: "Email",
@@ -31,15 +32,20 @@ let fieldsData = [
   }
 ];
 
-const AuthForm = ({ isLoading, label, isSignUp, submit }) => {
+const AuthForm: React.FC<IAuthFormProps> = ({
+  isLoading,
+  label,
+  isSignUp,
+  submit
+}) => {
   const [fields, setFields] = useState({ email: "", password: "", name: "" });
 
-  const submitForm = e => {
+  const submitForm = (e: React.FormEvent) => {
     e.preventDefault();
     submit(fields);
   };
 
-  const changeHandler = e => {
+  const changeHandler = (e: React.FormEvent<HTMLInputElement>) => {
     const input = e.currentTarget;
     setFields({
       ...fields,

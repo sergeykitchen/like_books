@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUserRequest } from "../../actions/usersActions";
 import AuthForm from "../../components/authForm";
+import { IExistUser, IDefaultState } from "../../interfaces";
 
 function SignInPage() {
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.users.loading);
-  const user = useSelector(state => state.users.user);
+  const loading = useSelector<IDefaultState, boolean>(
+    state => state.users.loading
+  );
+  const user = useSelector<IDefaultState>(state => state.users.user);
 
   useEffect(() => {
     if (!user) {
@@ -15,7 +18,7 @@ function SignInPage() {
     }
   }, [user]);
 
-  const submit = data => {
+  const submit = (data: IExistUser): void => {
     dispatch(loginUserRequest(data));
   };
 
