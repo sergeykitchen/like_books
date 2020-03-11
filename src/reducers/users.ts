@@ -1,16 +1,7 @@
 import { AxiosResponse } from "axios";
 import { IAction, IUsersState } from "../interfaces";
 
-import {
-  CREATE_USER_REQUEST,
-  CREATE_USER_SUCCESS,
-  CREATE_USER_ERROR,
-  LOGIN_USER_REQUEST,
-  LOGIN_USER_SUCCESS,
-  LOGIN_USER_ERROR,
-  LOGOUT_USER
-  // UPDATE_USER
-} from "../constants";
+import { actionTypes } from "../constants";
 
 const initialState = {
   user: null,
@@ -23,45 +14,45 @@ export default (
 ): IUsersState => {
   const { type, payload } = action;
   switch (type) {
-    // case UPDATE_USER:
+    // case actionTypes.UPDATE_USER:
     //   const user: IUser | null = Object.assign({}, state).user;
     //   user && user.likedBooks.push(payload);
     //   return {
     //     ...state,
     //     user
     //   };
-    case LOGOUT_USER:
+    case actionTypes.LOGOUT_USER:
       return {
         ...state,
         user: null
       };
-    case CREATE_USER_REQUEST:
+    case actionTypes.CREATE_USER_REQUEST:
       return {
         user: null,
         loading: true
       };
-    case CREATE_USER_SUCCESS:
+    case actionTypes.CREATE_USER_SUCCESS:
       return {
         ...state,
         loading: false,
         user: payload ? payload.data.user : null
       };
-    case CREATE_USER_ERROR:
+    case actionTypes.CREATE_USER_ERROR:
       return {
         loading: false
       };
-    case LOGIN_USER_REQUEST:
+    case actionTypes.LOGIN_USER_REQUEST:
       return {
         user: null,
         loading: true
       };
-    case LOGIN_USER_SUCCESS:
+    case actionTypes.LOGIN_USER_SUCCESS:
       return {
         ...state,
         loading: false,
         user: payload ? payload.data.user : null
       };
-    case LOGIN_USER_ERROR:
+    case actionTypes.LOGIN_USER_ERROR:
       return {
         loading: false
       };

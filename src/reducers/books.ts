@@ -1,17 +1,7 @@
 import { AxiosResponse } from "axios";
 import { IAction, IBooksState, IBook, IVoteResponse } from "../interfaces";
 
-import {
-  GET_BOOKS_REQUEST,
-  GET_BOOKS_SUCCESS,
-  GET_BOOKS_ERROR,
-  GET_BOOK_REQUEST,
-  GET_BOOK_SUCCESS,
-  GET_BOOK_ERROR,
-  SET_FILTERS,
-  VOTE_BOOK_REQUEST,
-  VOTE_BOOK_SUCCESS
-} from "../constants";
+import { actionTypes } from "../constants";
 
 const initialState = {
   books: null,
@@ -27,7 +17,7 @@ export default (
   const { type, payload } = action;
 
   switch (type) {
-    case VOTE_BOOK_REQUEST: {
+    case actionTypes.VOTE_BOOK_REQUEST: {
       const { books } = state;
       const { bookId } = payload as IVoteResponse;
       let newBooks;
@@ -44,7 +34,7 @@ export default (
         books: newBooks
       };
     }
-    case VOTE_BOOK_SUCCESS:
+    case actionTypes.VOTE_BOOK_SUCCESS:
       if (state.books) {
         const newBooks = state.books.map(i => {
           const bookId = (payload as IVoteResponse).bookId;
@@ -63,18 +53,18 @@ export default (
         };
       }
       return state;
-    case SET_FILTERS:
+    case actionTypes.SET_FILTERS:
       return {
         ...state,
         filters: payload || []
       };
-    case GET_BOOKS_REQUEST:
+    case actionTypes.GET_BOOKS_REQUEST:
       return {
         ...state,
         books: null,
         loading: true
       };
-    case GET_BOOKS_SUCCESS: {
+    case actionTypes.GET_BOOKS_SUCCESS: {
       const books = payload
         ? (payload as AxiosResponse).data.map((item: any) => {
             return { loading: false, ...item };
@@ -87,25 +77,25 @@ export default (
         books: books
       };
     }
-    case GET_BOOKS_ERROR:
+    case actionTypes.GET_BOOKS_ERROR:
       return {
         ...state,
         loading: false
       };
-    case GET_BOOK_REQUEST:
+    case actionTypes.GET_BOOK_REQUEST:
       return {
         ...state,
         loading: true,
         book: null
       };
-    case GET_BOOK_SUCCESS: {
+    case actionTypes.GET_BOOK_SUCCESS: {
       return {
         ...state,
         loading: false,
         book: (payload as AxiosResponse).data.book
       };
     }
-    case GET_BOOK_ERROR:
+    case actionTypes.GET_BOOK_ERROR:
       return {
         ...state,
         loading: false

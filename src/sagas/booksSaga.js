@@ -8,11 +8,7 @@ import {
 } from "../actions/booksActions";
 import { setError } from "../actions/errorAction";
 
-import {
-  GET_BOOKS_REQUEST,
-  VOTE_BOOK_REQUEST,
-  GET_BOOK_REQUEST
-} from "../constants";
+import { actionTypes } from "../constants";
 
 function* getBooks() {
   try {
@@ -42,12 +38,12 @@ function* voteBook({ payload: { bookId } }) {
 }
 
 export function* voteBookSaga() {
-  yield takeLatest(VOTE_BOOK_REQUEST, voteBook);
+  yield takeLatest(actionTypes.VOTE_BOOK_REQUEST, voteBook);
 }
 
 export function* getBookSaga() {
-  yield takeEvery(GET_BOOK_REQUEST, getBook);
+  yield takeEvery(actionTypes.GET_BOOK_REQUEST, getBook);
 }
 export function* getBooksSaga() {
-  yield takeEvery(GET_BOOKS_REQUEST, getBooks);
+  yield takeEvery(actionTypes.GET_BOOKS_REQUEST, getBooks);
 }

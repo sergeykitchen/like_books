@@ -10,7 +10,7 @@ import {
 
 import { setError } from "../actions/errorAction";
 
-import { CREATE_USER_REQUEST, LOGIN_USER_REQUEST } from "../constants";
+import { actionTypes } from "../constants";
 
 function* createUser(action: any) {
   try {
@@ -40,9 +40,9 @@ function* loginUser(action: any) {
 }
 
 export function* createUserSaga() {
-  yield takeEvery(CREATE_USER_REQUEST, createUser);
+  yield takeEvery(actionTypes.CREATE_USER_REQUEST, createUser);
 }
 
 export function* loginUserSaga() {
-  yield takeEvery(LOGIN_USER_REQUEST, loginUser);
+  yield takeEvery(actionTypes.LOGIN_USER_REQUEST, loginUser);
 }

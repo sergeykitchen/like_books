@@ -1,4 +1,4 @@
-import { SET_ERROR, DROP_ERROR } from "../constants";
+import { actionTypes } from "../constants";
 
 interface IErrorAction {
   type: string;
@@ -7,10 +7,10 @@ interface IErrorAction {
 
 export const setError = (payload: any): IErrorAction => {
   return {
-    type: SET_ERROR,
+    type: actionTypes.SET_ERROR,
     payload: payload
   };
 };
 export const dropError = () => ({
-  type: DROP_ERROR
+  type: actionTypes.DROP_ERROR
 });

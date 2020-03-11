@@ -1,4 +1,4 @@
-import { SET_ERROR, DROP_ERROR } from "../constants";
+import { actionTypes } from "../constants";
 import { IError } from "../interfaces";
 
 const error: IError | null = null;
@@ -12,7 +12,7 @@ export default (state = error, action: IErrorAction): IError | null => {
   const { type, payload } = action;
 
   switch (type) {
-    case SET_ERROR: {
+    case actionTypes.SET_ERROR: {
       if (payload.response) {
         return {
           message: payload.response.data.message,
@@ -24,7 +24,7 @@ export default (state = error, action: IErrorAction): IError | null => {
         statusText: ""
       };
     }
-    case DROP_ERROR: {
+    case actionTypes.DROP_ERROR: {
       return null;
     }
     default:
