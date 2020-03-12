@@ -1,7 +1,13 @@
 import React from "react";
-import Select from "react-select";
+import Select, { ValueType } from "react-select";
+import { IFilter } from "../../interfaces";
 
-const options = [
+interface ICustomSelectProps {
+  filters: IFilter[];
+  setFilters: (value: IFilter[]) => void;
+}
+
+const options: IFilter[] = [
   { value: "fantasy", label: "fantasy" },
   { value: "classic", label: "classic" },
   { value: "horror", label: "horror" },
@@ -11,9 +17,12 @@ const options = [
   { value: "drama", label: "drama" }
 ];
 
-export const CustomSelect = ({ setFilters, filters }) => {
-  const changeHandler = selectedOption => {
-    setFilters(selectedOption);
+export const CustomSelect: React.FC<ICustomSelectProps> = ({
+  setFilters,
+  filters
+}) => {
+  const changeHandler = (selectedOption: ValueType<IFilter>) => {
+    setFilters(selectedOption as IFilter[]);
   };
 
   return (

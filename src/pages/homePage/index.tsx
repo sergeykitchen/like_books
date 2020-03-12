@@ -15,7 +15,9 @@ const HomePage = () => {
   const books = useSelector<IDefaultState, IBook[] | null>(state =>
     filteredBooks(state)
   );
-  const filters = useSelector<IDefaultState>(state => state.books.filters);
+  const filters = useSelector<IDefaultState, IFilter[]>(
+    state => state.books.filters
+  );
 
   useEffect(
     useCallback(() => {
