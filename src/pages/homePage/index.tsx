@@ -7,11 +7,15 @@ import { BookCard } from "../../components/bookCard";
 import { CustomSelect } from "../../components/select";
 import { Loader } from "../../components/loader";
 
+import { IBook, IFilter, IDefaultState } from "../../interfaces";
+
 const HomePage = () => {
   const dispatch = useDispatch();
-  const loadingBooks = useSelector(state => state.books.loading);
-  const books = useSelector(state => filteredBooks(state));
-  const filters = useSelector(state => state.books.filters);
+  const loadingBooks = useSelector<IDefaultState>(state => state.books.loading);
+  const books = useSelector<IDefaultState, IBook[] | null>(state =>
+    filteredBooks(state)
+  );
+  const filters = useSelector<IDefaultState>(state => state.books.filters);
 
   useEffect(
     useCallback(() => {
@@ -24,7 +28,7 @@ const HomePage = () => {
 
   const getCards = () => {
     if (!books) return null;
-    return books.map(item => {
+    return books.map((item: IBook) => {
       return (
         <div key={item._id} className="col-sm-6 col-md-4 col-xl-3 mt-5">
           <BookCard item={item} />
@@ -33,7 +37,7 @@ const HomePage = () => {
     });
   };
 
-  const setFiltersHandler = data => {
+  const setFiltersHandler = (data: IFilter[]) => {
     dispatch(setFilters(data));
   };
 

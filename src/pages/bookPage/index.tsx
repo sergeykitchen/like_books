@@ -6,11 +6,12 @@ import { Loader } from "../../components/loader";
 import { BookDetails } from "../../components/bookDetails";
 import { ErrorMessage } from "../../components/errorMessage";
 import { VotedUsersPanel } from "../../components/usersPanel";
+import { IBooksState, IDefaultState } from "../../interfaces";
 
 const BookPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const books = useSelector(state => state.books);
+  const books = useSelector<IDefaultState, IBooksState>(state => state.books);
   const book = books.book;
 
   const isNeedFetch = useCallback(() => {
@@ -26,23 +27,29 @@ const BookPage = () => {
     []
   );
 
-  if (books.error) {
-    return <ErrorMessage error={books.error} />;
-  }
+  /* 
+  
+  TODO
+  */
+  // if (books.error) {
+  //   return <ErrorMessage error={books.error} />;
+  // }
 
   return (
     <>
       {isNeedFetch() ? (
         <Loader />
       ) : (
-        <div className="p-1 p-lg-5 mw-1200 m-auto">
-          <div className="row m-0">
-            <div className=" col-md-8">
-              <BookDetails book={book} />
+        book && (
+          <div className="p-1 p-lg-5 mw-1200 m-auto">
+            <div className="row m-0">
+              <div className=" col-md-8">
+                <BookDetails book={book} />
+              </div>
+              <VotedUsersPanel voices={book.voices} />
             </div>
-            <VotedUsersPanel voices={book.voices} />
           </div>
-        </div>
+        )
       )}
     </>
   );
