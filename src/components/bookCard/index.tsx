@@ -4,8 +4,13 @@ import { voteForBookRequest } from "../../actions/booksActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { BookCover } from "../bookCover";
+import { IBook, IDefaultState, IUser } from "../../interfaces";
 
-export const BookCard = ({
+interface IBookCardProps {
+  item: IBook;
+}
+
+export const BookCard: React.FC<IBookCardProps> = ({
   item: {
     voices = [],
     title,
@@ -19,22 +24,26 @@ export const BookCard = ({
   }
 }) => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.users.user);
+  const user = useSelector<IDefaultState, IUser | null>(
+    state => state.users.user
+  );
 
   const vote = () => {
-    dispatch(
-      voteForBookRequest({
-        bookId: _id,
-        userId: user._id
-      })
-    );
+    if (user) {
+      dispatch(
+        voteForBookRequest({
+          bookId: _id,
+          userId: user._id
+        })
+      );
+    }
   };
 
   const isUserVoted = () => {
-    return user && voices.includes(user._id);
+    return user && (voices as string[]).includes(user._id);
   };
 
-  const cutText = (text, length = 25) => {
+  const cutText = (text: string, length: number = 25): string => {
     const words = text.split(" ");
     return words.length <= length
       ? text

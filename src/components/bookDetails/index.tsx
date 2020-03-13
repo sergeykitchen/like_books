@@ -1,8 +1,9 @@
 import React from "react";
 import { BookCover } from "../bookCover";
 import "./styles.scss";
+import { IBook } from "../../interfaces";
 
-export const BookDetails = ({ book }) => {
+export const BookDetails: React.FC<{ book: IBook }> = ({ book }) => {
   return (
     <div className="jumbotron book-info">
       <h1 className="capitalize">{book.title}.</h1>

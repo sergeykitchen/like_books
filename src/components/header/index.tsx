@@ -4,7 +4,7 @@ import { BookIcon } from "../icons/BookIcon";
 
 import "./styles.scss";
 
-export const Header = ({ user, logout }) => {
+export const Header: React.FC<any> = ({ user, logout }) => {
   const logOutUser = () => {
     localStorage.removeItem("my_app");
     logout();

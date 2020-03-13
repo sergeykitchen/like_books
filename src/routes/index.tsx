@@ -5,15 +5,16 @@ import SignInPage from "../pages/signInPage";
 import BookPage from "../pages/bookPage";
 import SignUpPage from "../pages/signUpPage";
 import HomePage from "../pages/homePage";
+import { IUser } from "../interfaces";
 
-export const Routes = ({ user }) => {
+export const Routes: React.FC<{ user: IUser | null }> = ({ user }) => {
   if (user) {
     return (
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/user_page" component={MainPage} />
         <Route path="/book_page/:id" component={BookPage} />
-        <Redirect to="/" component={HomePage} />
+        <Redirect to="/" />
       </Switch>
     );
   }
@@ -23,7 +24,7 @@ export const Routes = ({ user }) => {
       <Route path="/signin" component={SignInPage} />
       <Route path="/book_page/:id" component={BookPage} />
       <Route path="/signup" component={SignUpPage} />
-      <Redirect to="/" component={HomePage} />
+      <Redirect to="/" />
     </Switch>
   );
 };

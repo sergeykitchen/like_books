@@ -3,11 +3,12 @@ import { Toast } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { dropError } from "../../actions/errorAction";
 import "./styles.scss";
+import { IDefaultState, IError } from "../../interfaces";
 
-let timer = null;
+let timer: number;
 
-export const CustomToast = () => {
-  const error = useSelector(state => state.error);
+export const CustomToast: React.FC = () => {
+  const error = useSelector<IDefaultState, IError>(state => state.error);
   const dispatch = useDispatch();
 
   const [containerClassName, setContainerClassName] = useState(
@@ -28,11 +29,11 @@ export const CustomToast = () => {
   const closeToast = useCallback(() => {
     clearError();
     clearTimeout(timer);
-    timer = null;
+    timer = -1;
   }, [clearError]);
 
   const closeToastDelay = useCallback(() => {
-    timer = setTimeout(() => {
+    timer = window.setTimeout(() => {
       setContainerClassName("toast-container");
       closeToast();
     }, 3000);
@@ -43,7 +44,7 @@ export const CustomToast = () => {
   };
 
   const mouseLeaveHandler = () => {
-    if (!timer) return;
+    if (timer === -1) return;
     closeToastDelay();
   };
 

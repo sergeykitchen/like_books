@@ -29,6 +29,7 @@ function* getBook(action: IAction<string>) {
     }
   } catch (e) {
     yield put(getBookError());
+    yield put(setError(e));
   }
 }
 

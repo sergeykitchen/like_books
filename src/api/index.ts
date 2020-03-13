@@ -36,7 +36,7 @@ class Api {
     }
   };
 
-  logInByToken = async (): Promise<AxiosResponse | undefined> => {
+  logInByToken = async (): Promise<AxiosResponse | void> => {
     const token = this._getToken();
     if (!token) return;
     try {
@@ -100,7 +100,7 @@ class Api {
     }
   };
 
-  voteForBook = async (id: string): Promise<AxiosResponse | undefined> => {
+  voteForBook = async (id: string): Promise<AxiosResponse | void> => {
     const token = this._getToken();
     if (!token) return;
     try {

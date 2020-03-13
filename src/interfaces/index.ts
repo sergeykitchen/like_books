@@ -10,7 +10,7 @@ export interface IVoice {
   name: string;
 }
 export interface IUsersState extends Object {
-  user?: IUser | null;
+  user: IUser | null;
   loading: boolean;
 }
 
@@ -33,8 +33,8 @@ export interface IBooksState {
 
 export interface IBook {
   _id: string;
-  tags: [string];
-  voices: [any];
+  tags: string[];
+  voices: string[] | IVoice[];
   price: Number;
   picture: string;
   title: string;

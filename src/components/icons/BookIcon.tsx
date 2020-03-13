@@ -1,6 +1,6 @@
 import React from "react";
 
-export const BookIcon = () => {
+export const BookIcon: React.FC = () => {
   return (
     <svg
       version="1.1"

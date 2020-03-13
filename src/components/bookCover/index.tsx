@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./styles.scss";
 
-export const BookCover = ({ image }) => {
-  const [pictureContainer, setPictureContainer] = useState(null);
+export const BookCover: React.FC<{ image: string }> = ({ image }) => {
+  const [
+    pictureContainer,
+    setPictureContainer
+  ] = useState<HTMLDivElement | null>(null);
 
   const loadImageHandler = useCallback(() => {
     let img = new Image(200, 300);

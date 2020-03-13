@@ -9,7 +9,7 @@ import { Routes } from "./routes";
 
 import { IUser, IDefaultState } from "./interfaces";
 
-const App: React.FC<{}> = () => {
+const App: React.FC = () => {
   const dispatch = useDispatch();
   const user = useSelector<IDefaultState, IUser | null>(state => {
     if (state.users.user) {

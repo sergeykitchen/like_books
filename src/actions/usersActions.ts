@@ -21,7 +21,7 @@ export const createUserError = (): IAction => {
   };
 };
 
-export const loginUserRequest = <T>(data: T): IAction<T> => {
+export const loginUserRequest = <T>(data?: T): IAction<T> => {
   return {
     type: actionTypes.LOGIN_USER_REQUEST,
     payload: data

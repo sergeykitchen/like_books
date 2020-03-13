@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { getBookRequest } from "../../actions/booksActions";
 import { Loader } from "../../components/loader";
 import { BookDetails } from "../../components/bookDetails";
-import { ErrorMessage } from "../../components/errorMessage";
+// import { ErrorMessage } from "../../components/errorMessage";
 import { VotedUsersPanel } from "../../components/usersPanel";
-import { IBooksState, IDefaultState } from "../../interfaces";
+import { IBooksState, IDefaultState, IVoice } from "../../interfaces";
 
 const BookPage = () => {
   const { id } = useParams();
@@ -46,7 +46,7 @@ const BookPage = () => {
               <div className=" col-md-8">
                 <BookDetails book={book} />
               </div>
-              <VotedUsersPanel voices={book.voices} />
+              <VotedUsersPanel voices={book.voices as IVoice[]} />
             </div>
           </div>
         )

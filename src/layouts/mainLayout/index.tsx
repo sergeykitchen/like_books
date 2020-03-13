@@ -5,11 +5,15 @@ import { loginUserRequest } from "../../actions/usersActions";
 import { voteForBookSuccess } from "../../actions/booksActions";
 import { CustomToast } from "../../components/customToast";
 import { Loader } from "../../components/loader";
+import { IDefaultState, IVoteResponse } from "../../interfaces";
+
 import "./styles.scss";
 
-const MainLayout = ({ children }) => {
+const MainLayout: React.FC = ({ children }) => {
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.users.loading);
+  const loading = useSelector<IDefaultState, boolean>(
+    state => state.users.loading
+  );
   const { socket, initSocket } = socketApi;
 
   useEffect(() => {
@@ -20,7 +24,8 @@ const MainLayout = ({ children }) => {
 
   useEffect(() => {
     if (!socket) return;
-    socket.on("voted", ({ voices }) => {
+    socket.on("voted", (data: IVoteResponse) => {
+      const { voices } = data;
       dispatch(voteForBookSuccess(voices));
     });
     return () => {

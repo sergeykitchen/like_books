@@ -70,7 +70,7 @@ router.get("/:id", validateIdMiddleware, async (req, res, next) => {
     });
 
     if (!book) {
-      return res.sendStatus(404);
+      return res.status(404).json({ message: "Book not found" });
     }
     return res.json({ book });
   } catch (error) {

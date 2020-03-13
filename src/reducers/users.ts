@@ -39,6 +39,7 @@ export default (
       };
     case actionTypes.CREATE_USER_ERROR:
       return {
+        ...state,
         loading: false
       };
     case actionTypes.LOGIN_USER_REQUEST:
@@ -54,6 +55,7 @@ export default (
       };
     case actionTypes.LOGIN_USER_ERROR:
       return {
+        ...state,
         loading: false
       };
     default:
