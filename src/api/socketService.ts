@@ -3,10 +3,11 @@ import io from "socket.io-client";
 // "http://localhost:8001"
 
 class socketApi {
-  socket = null;
+  public socket!: SocketIOClient.Socket;
 
-  initSocket = url => {
+  initSocket = (url: string) => {
     this.socket = io(url);
+
     this.socket.on("connect", () => {
       console.log("Connected");
       this.socket.on("disconnect", () => {
