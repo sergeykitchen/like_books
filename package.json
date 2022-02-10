@@ -70,7 +70,7 @@
     "@types/react-select": "^3.0.10",
     "concurrently": "^5.1.0",
     "cross-env": "^7.0.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "redux-devtools-extension": "^2.13.8"
   }
 }
